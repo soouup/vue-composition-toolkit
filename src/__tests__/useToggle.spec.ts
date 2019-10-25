@@ -1,4 +1,4 @@
-import { isRef } from '@vue/runtime-core'
+import { effect, isRef } from '@vue/runtime-core'
 import useToggle from '../useToggle'
 
 describe('useToggle', () => {
@@ -33,5 +33,18 @@ describe('useToggle', () => {
     toggle(true)
 
     expect(refToggleValue.value).toBe(true)
+  })
+
+  test('should be reactive', () => {
+    const [refToggleValue, toggle] = useToggle(true)
+
+    let dummy
+    effect(() => {
+      dummy = refToggleValue.value
+    })
+
+    expect(dummy).toBe(true)
+    toggle()
+    expect(dummy).toBe(false)
   })
 })
