@@ -9,11 +9,14 @@
   "scripts": {
     "dev": "node scripts/dev.js",
     "build": "node scripts/build.js",
+    "test": "jest",
     "commit": "git-cz",
     "lint": "prettier --write --parser typescript \"src/**/*.ts?(x)\"",
     "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "devDependencies": {
     "@microsoft/api-extractor": "^7.5.2",
     "@types/jest": "^24.0.19",
@@ -24,6 +27,7 @@
     "execa": "^3.2.0",
     "fs-extra": "^8.1.0",
     "husky": "^3.0.9",
+    "jest": "^24.9.0",
     "lint-staged": "^9.4.2",
     "minimist": "^1.2.0",
     "prettier": "^1.18.2",
