@@ -1,9 +1,16 @@
 import { ref, Ref } from '@vue/runtime-core'
-import { isDef } from './utils'
+import { isDef, assert, isBoolean } from './utils'
 
 export default function useToggle(
   val: boolean = false
 ): [Ref<boolean>, (v?: boolean) => void] {
+  __DEV__ &&
+    assert(
+      isBoolean(val),
+      'You must pass a boolean value for the `useToggle` function, received: ',
+      val
+    )
+
   const refToggleValue = ref(val)
 
   function toggle(newVal?: boolean) {
