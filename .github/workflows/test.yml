@@ -11,5 +11,5 @@ jobs:
     steps:
     - uses: actions/checkout@v1
 
-    - run: npm ci
+    - run: yarn install
     - run: npm test
