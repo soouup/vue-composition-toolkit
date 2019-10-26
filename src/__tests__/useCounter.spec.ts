@@ -14,6 +14,10 @@ describe('useCounter', () => {
     expect(refCount.value).toBe(10)
     reset()
     expect(refCount.value).toBe(0)
+    inc(5)
+    expect(refCount.value).toBe(5)
+    dec(3)
+    expect(refCount.value).toBe(2)
   })
 
   test('basic use (Ref<number>)', () => {
@@ -29,6 +33,10 @@ describe('useCounter', () => {
     expect(refCount.value).toBe(10)
     reset()
     expect(refCount.value).toBe(0)
+    inc(5)
+    expect(refCount.value).toBe(5)
+    dec(3)
+    expect(refCount.value).toBe(2)
   })
 
   test('min & max (number)', () => {
@@ -39,12 +47,12 @@ describe('useCounter', () => {
     expect(refCount.value).toBe(0)
     inc()
     expect(refCount.value).toBe(1)
-    for (let i = 0; i < 20; i++) {
-      inc()
-    }
+    inc(100)
     expect(refCount.value).toBe(10)
-    set(-100)
+    dec(100)
     expect(refCount.value).toBe(0)
+    set(100)
+    expect(refCount.value).toBe(10)
     set(3)
     expect(refCount.value).toBe(3)
     reset()

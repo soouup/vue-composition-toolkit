@@ -25,8 +25,8 @@ function getValidValue(
 type CounterResult = [
   Ref<number>,
   {
-    inc(): void
-    dec(): void
+    inc(val?: CounterArg): void
+    dec(val?: CounterArg): void
     set(val: CounterArg): void
     reset(): void
   }
@@ -70,12 +70,24 @@ export default function useCounter(
   const refMin = isDef(min) ? ref(min) : undefined
   const refMax = isDef(max) ? ref(max) : undefined
 
-  function inc() {
-    if (!refMax || refCount.value < refMax.value) refCount.value++
+  function inc(val: CounterArg = 1) {
+    if (!refMax || refCount.value < refMax.value) {
+      refCount.value = getValidValue(
+        refCount.value + getRawValue(val),
+        min,
+        max
+      )
+    }
   }
 
-  function dec() {
-    if (!refMin || refCount.value > refMin.value) refCount.value--
+  function dec(val: CounterArg = 1) {
+    if (!refMin || refCount.value > refMin.value) {
+      refCount.value = getValidValue(
+        refCount.value - getRawValue(val),
+        min,
+        max
+      )
+    }
   }
 
   function set(val: CounterArg) {
