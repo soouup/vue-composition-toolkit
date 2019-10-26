@@ -12,9 +12,9 @@ jobs:
     - uses: actions/checkout@v1
     
     # After vue3 is released, it will be removed
-    uses: actions/hello-world-javascript-action@master
-    with:
-      who-to-greet: HcySunYang
+    - uses: actions/hello-world-javascript-action@master
+      with:
+        who-to-greet: HcySunYang
     # Until the vue3 is released, the real test is taken.
     # - run: yarn install
     # - run: npm test
