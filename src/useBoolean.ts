@@ -1,3 +1,3 @@
-import useToggle from './useToggle'
+import useBoolean from './useToggle'
 
-export default useToggle
+export default useBoolean

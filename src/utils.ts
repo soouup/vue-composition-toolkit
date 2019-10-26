@@ -5,3 +5,4 @@ export const assert = (condition: boolean, ...infos: any[]) => {
 }
 
 export const isBoolean = (val: any) => typeof val === 'boolean'
+export const isNumber = (val: any) => typeof val === 'number'
