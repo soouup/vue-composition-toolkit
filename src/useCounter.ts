@@ -3,10 +3,9 @@ import { assert, isNumber, isDef } from './utils'
 
 type CounterArg<N = number> = Ref<N> | N
 
-type ValueType = CounterArg | undefined
-type RawValueType<V> = V extends CounterArg<infer M> ? M : undefined
-function getRawValue<V extends ValueType>(val?: V): RawValueType<V> {
-  return (isRef(val) ? val.value : val) as RawValueType<V>
+type RawValueType<V> = V extends CounterArg<infer M> ? M : never
+function getRawValue<V extends CounterArg>(val?: V): RawValueType<V> {
+  return isRef(val) ? val.value : val
 }
 
 function getValidValue(
