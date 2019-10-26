@@ -10,6 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-
-    - run: yarn install
-    - run: npm test:dummy
+    
+    # After vue3 is released, it will be removed
+    uses: actions/hello-world-javascript-action@master
+    with:
+      who-to-greet: HcySunYang
+    # Until the vue3 is released, the real test is taken.
+    # - run: yarn install
+    # - run: npm test
