@@ -1,4 +1,4 @@
-import { effect, isRef } from '@vue/runtime-core'
+import { effect, isRef } from '@vue/runtime-test'
 import useToggle from '../useToggle'
 
 describe('useToggle', () => {
