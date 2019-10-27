@@ -1,4 +1,10 @@
-import { ref, Ref, onUnmounted, getCurrentInstance } from '@vue/runtime-core'
+import {
+  ref,
+  Ref,
+  onMounted,
+  onUnmounted,
+  getCurrentInstance
+} from '@vue/runtime-core'
 import { assert, isNumber } from './utils'
 
 export default function useTimeout(
@@ -11,21 +17,28 @@ export default function useTimeout(
       ms
     )
 
+  const currentInstance = getCurrentInstance()
   const refReady = ref(false)
-
-  const timer = setTimeout(() => {
-    refReady.value = true
-  }, ms)
-
+  let timer: any = null
+  const setTimer = () => {
+    refReady.value = false
+    timer = setTimeout(() => {
+      refReady.value = true
+    }, ms)
+  }
   const clear = () => {
     clearTimeout(timer)
   }
 
+  if (currentInstance) {
+    onMounted(setTimer)
+  } else {
+    setTimer()
+  }
+
   // `onUnmounted` is called to clear the timer only when there has a component instance.
-  if (getCurrentInstance()) {
-    onUnmounted(() => {
-      clear()
-    })
+  if (currentInstance) {
+    onUnmounted(clear)
   }
 
   return [refReady, clear]
