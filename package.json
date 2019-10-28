@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "Vue composition-api toolkit.",
   "main": "index.js",
-  "repository": "https://github.com/HcySunYang/vue-composition-toolkit.git",
+  "repository": "https://github.com/shuidi-fed/vue-composition-toolkit.git",
   "author": "HcySunYang <HcySunYang@outlook.com>",
   "license": "MIT",
   "scripts": {
