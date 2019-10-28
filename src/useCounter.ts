@@ -1,12 +1,7 @@
-import { ref, Ref, isRef } from '@vue/runtime-core'
-import { assert, isNumber, isDef } from './utils'
+import { ref, Ref } from '@vue/runtime-core'
+import { assert, isNumber, isDef, getRawValue } from './utils'
 
 type CounterArg<N = number> = Ref<N> | N
-
-type RawValueType<V> = V extends CounterArg<infer M> ? M : never
-function getRawValue<V extends CounterArg>(val?: V): RawValueType<V> {
-  return isRef(val) ? val.value : val
-}
 
 function getValidValue(
   rawCount: CounterArg,
