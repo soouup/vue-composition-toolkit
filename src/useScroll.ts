@@ -1,0 +1,43 @@
+import { ref, onMounted, watch, Ref, onUnmounted } from '@vue/runtime-core'
+import { isWindow } from './utils'
+
+export default function useScroll(
+  refEl: Ref<Element | Window | null>
+): [Ref<number>, Ref<number>, () => void] {
+  const refX = ref(0)
+  const refY = ref(0)
+  const handler = () => {
+    if (isWindow(refEl.value)) {
+      refX.value = refEl.value.scrollX
+      refY.value = refEl.value.scrollY
+    } else if (refEl.value) {
+      refX.value = (refEl.value as Element).scrollLeft
+      refY.value = (refEl.value as Element).scrollTop
+    }
+  }
+
+  let stopWatch: () => void
+  onMounted(() => {
+    stopWatch = watch(refEl, (el, prevEl, onCleanup) => {
+      if (el) {
+        el.addEventListener('scroll', handler)
+      } else if (prevEl) {
+        prevEl.removeEventListener('scroll', handler)
+      }
+      onCleanup(() => {
+        refX.value = refY.value = 0
+        el && el.removeEventListener('scroll', handler)
+      })
+    })
+  })
+
+  onUnmounted(() => {
+    refEl.value && refEl.value.removeEventListener('scroll', handler)
+  })
+
+  function stop() {
+    stopWatch && stopWatch()
+  }
+
+  return [refX, refY, stop]
+}
