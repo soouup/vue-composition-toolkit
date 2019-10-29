@@ -1,12 +1,18 @@
 import { ref, onMounted, watch, Ref, onUnmounted } from '@vue/runtime-core'
-import { isWindow } from './utils'
+import throttle from 'lodash.throttle'
+import { isWindow, isObject } from './utils'
 
 export default function useScroll(
-  refEl: Ref<Element | Window | null>
+  refEl: Ref<Element | Window | null>,
+  options?: {
+    wait?: number
+    leading?: boolean
+    trailing?: boolean
+  }
 ): [Ref<number>, Ref<number>, () => void] {
   const refX = ref(0)
   const refY = ref(0)
-  const handler = () => {
+  let handler = () => {
     if (isWindow(refEl.value)) {
       refX.value = refEl.value.scrollX
       refY.value = refEl.value.scrollY
@@ -14,6 +20,16 @@ export default function useScroll(
       refX.value = (refEl.value as Element).scrollLeft
       refY.value = (refEl.value as Element).scrollTop
     }
+  }
+
+  if (isObject(options)) {
+    let wait = 0
+    if (options.wait && options.wait > 0) {
+      wait = options.wait
+      delete options.wait
+    }
+
+    handler = throttle(handler, wait, options)
   }
 
   let stopWatch: () => void
