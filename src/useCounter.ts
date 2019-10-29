@@ -1,4 +1,4 @@
-import { ref, Ref } from '@vue/runtime-core'
+import { ref, Ref } from '@vue/runtime-dom'
 import { assert, isNumber, isDef, getRawValue } from './utils'
 
 type CounterArg<N = number> = Ref<N> | N

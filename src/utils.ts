@@ -1,4 +1,4 @@
-import { Ref, isRef } from '@vue/runtime-core'
+import { Ref, isRef } from '@vue/runtime-dom'
 
 export const isDef = (val: any) => typeof val !== 'undefined'
 

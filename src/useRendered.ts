@@ -2,7 +2,7 @@ import {
   onMounted,
   onUpdated,
   ComponentInternalInstance
-} from '@vue/runtime-core'
+} from '@vue/runtime-dom'
 
 export default function useRendered(
   cb: () => any,

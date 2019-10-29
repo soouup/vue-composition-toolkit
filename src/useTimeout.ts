@@ -4,7 +4,7 @@ import {
   onMounted,
   onUnmounted,
   getCurrentInstance
-} from '@vue/runtime-core'
+} from '@vue/runtime-dom'
 import { assert, isNumber } from './utils'
 
 export default function useTimeout(

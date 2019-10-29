@@ -1,4 +1,4 @@
-import { ref, Ref } from '@vue/runtime-core'
+import { ref, Ref } from '@vue/runtime-dom'
 import { isDef, assert, isBoolean } from './utils'
 
 export default function useToggle(

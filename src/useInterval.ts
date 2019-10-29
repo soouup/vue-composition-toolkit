@@ -1,4 +1,4 @@
-import { Ref, isRef, watch, onUnmounted } from '@vue/runtime-core'
+import { Ref, isRef, watch, onUnmounted } from '@vue/runtime-dom'
 import { getRawValue, isNumber } from './utils'
 
 interface IntervalOptions {

@@ -1,6 +1,8 @@
 import path from 'path'
 import ts from 'rollup-plugin-typescript2'
 import replace from 'rollup-plugin-replace'
+import commonjs from 'rollup-plugin-commonjs'
+import nodeResolve from 'rollup-plugin-node-resolve'
 
 const pkg = require('./package.json')
 const resolve = p => path.resolve(__dirname, p)
@@ -61,6 +63,9 @@ function createConfig(output, plugins = []) {
 
   if (isGlobalBuild) {
     output.name = options.name
+    output.globals = {
+      '@vue/runtime-dom': 'VueDOMRuntime'
+    }
   }
 
   const shouldEmitDeclarations =
@@ -85,14 +90,17 @@ function createConfig(output, plugins = []) {
   // during a single build.
   hasTSChecked = true
 
-  const externals = []
-
   return {
     input: resolve(`src/index.ts`),
     // Global and Browser ESM builds inlines everything so that they can be
     // used alone.
-    external: isGlobalBuild || isBrowserESMBuild ? [] : externals,
+    external:
+      isGlobalBuild || isBrowserESMBuild
+        ? ['@vue/runtime-dom']
+        : ['@vue/runtime-dom', 'lodash.throttle'],
     plugins: [
+      nodeResolve(),
+      commonjs(),
       tsPlugin,
       createReplacePlugin(
         isProductionBuild,

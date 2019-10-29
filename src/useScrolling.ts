@@ -1,4 +1,4 @@
-import { ref, Ref, watch, onMounted, onUnmounted } from '@vue/runtime-core'
+import { ref, Ref, watch, onMounted, onUnmounted } from '@vue/runtime-dom'
 
 export default function useScrolling(
   refEl: Ref<Element | Window | null>

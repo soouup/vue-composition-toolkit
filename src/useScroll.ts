@@ -1,4 +1,4 @@
-import { ref, onMounted, watch, Ref, onUnmounted } from '@vue/runtime-core'
+import { ref, onMounted, watch, Ref, onUnmounted } from '@vue/runtime-dom'
 import throttle from 'lodash.throttle'
 import { isWindow, isObject } from './utils'
 
