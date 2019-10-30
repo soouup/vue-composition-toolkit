@@ -14,8 +14,17 @@ __DEV__=false yarn dev
 
 const execa = require('execa')
 const args = require('minimist')(process.argv.slice(2))
+const target = args._.length ? args._[0] : 'src'
 const formats = args.formats || args.f
 
-execa('rollup', ['-wc', '--environment', `FORMATS:${formats || 'global'}`], {
-  stdio: 'inherit'
-})
+execa(
+  'rollup',
+  [
+    '-wc',
+    '--environment',
+    [`TARGET:${target}`, `FORMATS:${formats || 'global'}`].join(',')
+  ],
+  {
+    stdio: 'inherit'
+  }
+)

@@ -4,7 +4,13 @@ import replace from 'rollup-plugin-replace'
 import commonjs from 'rollup-plugin-commonjs'
 import nodeResolve from 'rollup-plugin-node-resolve'
 
-const pkg = require('./package.json')
+const target = process.env.TARGET
+const pkg =
+  target === 'src'
+    ? require('./package.json')
+    : {
+        name: process.env.TARGET
+      }
 const resolve = p => path.resolve(__dirname, p)
 const options = {
   name: 'VueCompositionToolkit',
@@ -16,19 +22,25 @@ let hasTSChecked = false
 
 const configs = {
   esm: {
-    file: resolve(`dist/${pkg.name}.esm-bundler.js`),
+    file: resolve(
+      `${target === 'src' ? '' : target}dist/${pkg.name}.esm-bundler.js`
+    ),
     format: `es`
   },
   cjs: {
-    file: resolve(`dist/${pkg.name}.cjs.js`),
+    file: resolve(`${target === 'src' ? '' : target}/dist/${pkg.name}.cjs.js`),
     format: `cjs`
   },
   global: {
-    file: resolve(`dist/${pkg.name}.global.js`),
+    file: resolve(
+      `${target === 'src' ? '' : target}/dist/${pkg.name}.global.js`
+    ),
     format: `iife`
   },
   'esm-browser': {
-    file: resolve(`dist/${pkg.name}.esm-browser.js`),
+    file: resolve(
+      `${target === 'src' ? '' : target}/dist/${pkg.name}.esm-browser.js`
+    ),
     format: `es`
   }
 }
@@ -91,7 +103,7 @@ function createConfig(output, plugins = []) {
   hasTSChecked = true
 
   return {
-    input: resolve(`src/index.ts`),
+    input: resolve(`${target}/index.ts`),
     // Global and Browser ESM builds inlines everything so that they can be
     // used alone.
     external:
@@ -128,6 +140,9 @@ function createReplacePlugin(isProduction, isBundlerESMBuild, isBrowserBuild) {
         `process.env.NODE_ENV !== 'production'`
       : // hard coded dev/prod builds
         !isProduction,
+    'process.env.NODE_ENV': JSON.stringify(
+      isProduction ? 'production' : 'development'
+    ),
     // If the build is expected to run directly in the browser (global / esm-browser builds)
     __BROWSER__: isBrowserBuild,
     // this is only used during tests
