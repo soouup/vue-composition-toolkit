@@ -29,13 +29,13 @@ export default createComponent({
         h(
           'ul',
           metaData.map(meta => {
-            const isCurrent = store.currentDemo === meta.title
+            const isCurrent = store.currentMetaData.title === meta.title
 
             return h(
               'li',
               {
                 onClick() {
-                  store.currentDemo = meta.title
+                  store.currentMetaData = meta
                 },
                 class: css`
                   padding: 4px;
