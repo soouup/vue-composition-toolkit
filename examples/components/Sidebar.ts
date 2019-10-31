@@ -5,20 +5,6 @@ import { store } from '../store'
 import Resizebar from './Resizebar'
 import { useWindowSize } from '../../src'
 
-const className = css`
-  position: relative;
-  width: var(--sidebar-width);
-  height: 100%;
-  border-right: 1px solid var(--line-color);
-  background-color: var(--sidebar-bg);
-  & header {
-    font-size: 16px;
-    padding: 4px;
-    border-bottom: 1px solid var(--line-color);
-    margin-bottom: 10px;
-  }
-`
-
 interface Props {
   metaData: MetaData
 }
@@ -35,35 +21,53 @@ export default createComponent({
     })
 
     return () =>
-      h('sidebar', { class: className }, [
-        h(Resizebar, sideBarProps),
-        h('header', 'Vue3 Composition-API Toolkit Demo'),
-        h(
-          'ul',
-          metaData.map(meta => {
-            const isCurrent = store.currentMetaData.title === meta.title
+      h(
+        'sidebar',
+        {
+          class: css`
+            position: relative;
+            width: var(--sidebar-width);
+            height: 100%;
+            border-right: 1px solid var(--line-color);
+            background-color: var(--sidebar-bg);
+            & header {
+              font-size: 16px;
+              padding: 4px;
+              border-bottom: 1px solid var(--line-color);
+              margin-bottom: 10px;
+            }
+          `
+        },
+        [
+          h(Resizebar, sideBarProps),
+          h('header', 'Vue3 Composition-API Toolkit Demo'),
+          h(
+            'ul',
+            metaData.map(meta => {
+              const isCurrent = store.currentMetaData.title === meta.title
 
-            return h(
-              'li',
-              {
-                onClick() {
-                  store.currentMetaData = meta
+              return h(
+                'li',
+                {
+                  onClick() {
+                    store.currentMetaData = meta
+                  },
+                  class: css`
+                    padding: 4px;
+                    padding-left: 20px;
+                    cursor: pointer;
+                    color: ${isCurrent && 'var(--theme-color)'};
+                    background-color: ${isCurrent && '#cfcdcd'};
+                    :hover {
+                      color: var(--theme-color);
+                    }
+                  `
                 },
-                class: css`
-                  padding: 4px;
-                  padding-left: 20px;
-                  cursor: pointer;
-                  color: ${isCurrent && 'var(--theme-color)'};
-                  background-color: ${isCurrent && '#cfcdcd'};
-                  :hover {
-                    color: var(--theme-color);
-                  }
-                `
-              },
-              meta.title
-            )
-          })
-        )
-      ])
+                meta.title
+              )
+            })
+          )
+        ]
+      )
   }
 })
