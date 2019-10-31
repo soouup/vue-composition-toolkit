@@ -25,20 +25,19 @@ injectGlobal`
   }
 `
 
-const className = css`
-  display: flex;
-  height: 100%;
-  overflow: auto;
-`
-
-const App = createComponent({
-  setup() {
-    return () =>
-      h('div', { class: className }, [
-        h(Sidebar, { metaData }),
-        h(Main, { metaData })
-      ])
-  }
+const App = createComponent(() => {
+  return () =>
+    h(
+      'div',
+      {
+        class: css`
+          display: flex;
+          height: 100%;
+          overflow: auto;
+        `
+      },
+      [h(Sidebar, { metaData }), h(Main, { metaData })]
+    )
 })
 
 createApp().mount(App, '#app')
