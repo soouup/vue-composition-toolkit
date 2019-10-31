@@ -1,10 +1,13 @@
-import { createComponent, h } from '@vue/runtime-dom'
+import { createComponent, h, reactive, computed } from '@vue/runtime-dom'
 import { css } from 'emotion'
 import { MetaData } from '../metaData'
 import { store } from '../store'
+import Resizebar from './Resizebar'
+import { useWindowSize } from '../../src'
 
 const className = css`
-  width: 200px;
+  position: relative;
+  width: var(--sidebar-width);
   height: 100%;
   border-right: 1px solid var(--line-color);
   background-color: var(--sidebar-bg);
@@ -23,8 +26,17 @@ interface Props {
 export default createComponent({
   setup(props: Props) {
     const { metaData } = props
+
+    const [refX] = useWindowSize()
+    const sideBarProps = reactive({
+      axis: 'x',
+      rootSelector: '--sidebar-width',
+      bounds: { min: 200, max: computed(() => refX.value - 50) }
+    })
+
     return () =>
       h('sidebar', { class: className }, [
+        h(Resizebar, sideBarProps),
         h('header', 'Vue3 Composition-API Toolkit Demo'),
         h(
           'ul',

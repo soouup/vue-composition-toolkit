@@ -3,11 +3,15 @@ import {
   h,
   ref,
   ComponentOptions,
-  watch
+  watch,
+  computed,
+  reactive
 } from '@vue/runtime-dom'
 import { css } from 'emotion'
 import { store } from '../store'
 import useMarked from '../compose/useMarked'
+import Resizebar from './Resizebar'
+import { useWindowSize } from '../../src'
 
 export default createComponent({
   setup() {
@@ -18,6 +22,13 @@ export default createComponent({
     )
     const refDocEl = ref(null)
     useMarked(refDocEl, refMarkdownSource)
+
+    const [, refY] = useWindowSize()
+    const resizeBarProps = reactive({
+      axis: 'y',
+      rootSelector: '--doc-height',
+      bounds: { min: 300, max: computed(() => refY.value - 50) }
+    })
 
     return () =>
       h(
@@ -40,12 +51,13 @@ export default createComponent({
                 position: absolute;
                 left: 0;
                 bottom: 0;
-                height: 300px;
-                padding-top: 30px;
+                height: var(--doc-height);
                 width: 100%;
+                background-color: #fff;
               `
             },
             [
+              h(Resizebar, resizeBarProps),
               h(
                 'header',
                 {
@@ -74,6 +86,7 @@ export default createComponent({
 const markdownClassName = css`
   line-height: 1.5;
   overflow: auto;
+  margin-top: 30px;
   & > *:last-child {
     margin-bottom: 0;
   }
