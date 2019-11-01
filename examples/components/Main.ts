@@ -10,7 +10,7 @@ import {
 import { css } from 'emotion'
 import { store } from '../store'
 import useMarked from '../compose/useMarked'
-import Resizebar from './Resizebar'
+import Resizebar, { ResizebarProps } from './Resizebar'
 import { useWindowSize } from '../../src'
 
 export default createComponent(() => {
@@ -23,7 +23,7 @@ export default createComponent(() => {
   useMarked(refDocEl, refMarkdownSource)
 
   const [, refY] = useWindowSize()
-  const resizeBarProps = reactive({
+  const resizeBarProps = reactive<ResizebarProps>({
     axis: 'y',
     rootSelector: '--doc-height',
     bounds: { min: 300, max: computed(() => refY.value - 50) }

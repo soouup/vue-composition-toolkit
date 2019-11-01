@@ -2,7 +2,7 @@ import { createComponent, h, reactive, computed } from '@vue/runtime-dom'
 import { css } from 'emotion'
 import { MetaData } from '../metaData'
 import { store } from '../store'
-import Resizebar from './Resizebar'
+import Resizebar, { ResizebarProps } from './Resizebar'
 import { useWindowSize } from '../../src'
 
 interface Props {
@@ -13,7 +13,7 @@ export default createComponent<Props>(props => {
   const { metaData } = props
 
   const [refX] = useWindowSize()
-  const sideBarProps = reactive({
+  const sideBarProps = reactive<ResizebarProps>({
     axis: 'x',
     rootSelector: '--sidebar-width',
     bounds: { min: 200, max: computed(() => refX.value - 50) }

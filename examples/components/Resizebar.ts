@@ -1,15 +1,15 @@
-import { h, createComponent } from '@vue/runtime-dom'
+import { h, Ref, createComponent } from '@vue/runtime-dom'
 import { css } from 'emotion'
 
-interface Props {
+export interface ResizebarProps {
   axis: 'x' | 'y'
   bounds: {
-    min: number
-    max: number
+    min: Ref<number> | number
+    max: Ref<number> | number
   }
   rootSelector: string
 }
-export default createComponent<Props>(props => {
+export default createComponent<ResizebarProps>(props => {
   let { axis, rootSelector, bounds } = props
 
   const checkPosition = (e: MouseEvent | TouchEvent) => {

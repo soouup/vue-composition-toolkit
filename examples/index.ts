@@ -1,4 +1,4 @@
-import { h, createApp, createComponent } from '@vue/runtime-dom'
+import { h, createApp } from '@vue/runtime-dom'
 import { css, injectGlobal } from 'emotion'
 import metaData from './metaData'
 import Sidebar from './components/Sidebar'
@@ -25,19 +25,21 @@ injectGlobal`
   }
 `
 
-const App = createComponent(() => {
-  return () =>
-    h(
-      'div',
-      {
-        class: css`
-          display: flex;
-          height: 100%;
-          overflow: auto;
-        `
-      },
-      [h(Sidebar, { metaData }), h(Main, { metaData })]
-    )
-})
+const App = {
+  setup() {
+    return () =>
+      h(
+        'div',
+        {
+          class: css`
+            display: flex;
+            height: 100%;
+            overflow: auto;
+          `
+        },
+        [h(Sidebar, { metaData }), h(Main, { metaData })]
+      )
+  }
+}
 
 createApp().mount(App, '#app')
