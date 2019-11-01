@@ -16,6 +16,7 @@ Vue composition-api toolkit.
 - [x] useTimeout
 - [x] useToggle
 - [x] useWindowSize
+- [x] useCopyToClipboard
 - [ ] More...Welcome contribution
 
 ## Prior Art
