@@ -5,9 +5,9 @@ import {
 } from '@vue/runtime-dom'
 
 export default function useRendered(
-  cb: () => any,
+  cb: (isUpdate: boolean) => any,
   target?: ComponentInternalInstance | null
 ) {
-  onMounted(cb, target)
-  onUpdated(cb, target)
+  onMounted(() => cb(false), target)
+  onUpdated(() => cb(true), target)
 }
