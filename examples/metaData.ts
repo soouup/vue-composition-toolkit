@@ -17,6 +17,12 @@ import RenderedStory, {
   code as renderedCode
 } from '../src/stories/useRendered.story'
 import ScrollStory, { code as scrollCode } from '../src/stories/useScroll.story'
+import ScrollingStory, {
+  code as scrollingCode
+} from '../src/stories/useScrolling.story'
+import WindowSizeStory, {
+  code as windowSizeCode
+} from '../src/stories/useWindowSize.story'
 
 interface Meta {
   title: string
@@ -34,6 +40,6 @@ export default [
   { title: 'useInterval', component: IntervalStory, code: intervalCode },
   { title: 'useRendered', component: RenderedStory, code: renderedCode },
   { title: 'useScroll', component: ScrollStory, code: scrollCode },
-  { title: 'useScrolling', component: null, code: `` },
-  { title: 'useWindowSize', component: null, code: `` }
+  { title: 'useScrolling', component: ScrollingStory, code: scrollingCode },
+  { title: 'useWindowSize', component: WindowSizeStory, code: windowSizeCode }
 ] as MetaData
