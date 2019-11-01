@@ -26,6 +26,7 @@ import WindowSizeStory, {
 import CopyToClipboardStory, {
   code as copyToClipboardCode
 } from '../src/stories/useCopyToClipboard.story'
+import RafStory, { code as rafCode } from '../src/stories/useRaf.story'
 
 interface Meta {
   title: string
@@ -49,5 +50,6 @@ export default [
     title: 'useCopyToClipboard',
     component: CopyToClipboardStory,
     code: copyToClipboardCode
-  }
+  },
+  { title: 'useRaf', component: RafStory, code: rafCode }
 ] as MetaData

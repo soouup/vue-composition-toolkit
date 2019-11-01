@@ -17,6 +17,7 @@ Vue composition-api toolkit.
 - [x] useToggle
 - [x] useWindowSize
 - [x] useCopyToClipboard
+- [x] useRaf
 - [ ] More...Welcome contribution
 
 ## Prior Art
