@@ -23,6 +23,7 @@ export default {
 }
 
 export const code = `
+\`\`\`js
 export default {
   setup() {
     const refStoped = ref(false)
@@ -43,4 +44,5 @@ export default {
     ]
   }
 }
+\`\`\`
 `

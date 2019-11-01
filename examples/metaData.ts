@@ -10,6 +10,9 @@ import CssVarStory, { code as cssVarCode } from '../src/stories/useCssVar.story'
 import TimeoutStory, {
   code as timeoutCode
 } from '../src/stories/useTimeout.story'
+import IntervalStory, {
+  code as intervalCode
+} from '../src/stories/useInterval.story'
 
 interface Meta {
   title: string
@@ -24,7 +27,7 @@ export default [
   { title: 'useCounter', component: CounterStory, code: counterCode },
   { title: 'useCssVar', component: CssVarStory, code: cssVarCode },
   { title: 'useTimeout', component: TimeoutStory, code: timeoutCode },
-  { title: 'useInterval', component: null, code: `` },
+  { title: 'useInterval', component: IntervalStory, code: intervalCode },
   { title: 'useRendered', component: null, code: `` },
   { title: 'useScroll', component: null, code: `` },
   { title: 'useScrolling', component: null, code: `` },
