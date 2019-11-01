@@ -23,6 +23,9 @@ import ScrollingStory, {
 import WindowSizeStory, {
   code as windowSizeCode
 } from '../src/stories/useWindowSize.story'
+import CopyToClipboardStory, {
+  code as copyToClipboardCode
+} from '../src/stories/useCopyToClipboard.story'
 
 interface Meta {
   title: string
@@ -41,5 +44,10 @@ export default [
   { title: 'useRendered', component: RenderedStory, code: renderedCode },
   { title: 'useScroll', component: ScrollStory, code: scrollCode },
   { title: 'useScrolling', component: ScrollingStory, code: scrollingCode },
-  { title: 'useWindowSize', component: WindowSizeStory, code: windowSizeCode }
+  { title: 'useWindowSize', component: WindowSizeStory, code: windowSizeCode },
+  {
+    title: 'useCopyToClipboard',
+    component: CopyToClipboardStory,
+    code: copyToClipboardCode
+  }
 ] as MetaData
