@@ -24,6 +24,10 @@ import WindowSizeStory, {
   code as windowSizeCode
 } from '../src/stories/useWindowSize.story'
 import ListStory, { code as listCode } from '../src/stories/useList.story'
+import CopyToClipboardStory, {
+  code as copyToClipboardCode
+} from '../src/stories/useCopyToClipboard.story'
+import RafStory, { code as rafCode } from '../src/stories/useRaf.story'
 
 interface Meta {
   title: string
@@ -43,5 +47,11 @@ export default [
   { title: 'useScroll', component: ScrollStory, code: scrollCode },
   { title: 'useScrolling', component: ScrollingStory, code: scrollingCode },
   { title: 'useWindowSize', component: WindowSizeStory, code: windowSizeCode },
-  { title: 'useList', component: ListStory, code: listCode }
+  { title: 'useList', component: ListStory, code: listCode },
+  {
+    title: 'useCopyToClipboard',
+    component: CopyToClipboardStory,
+    code: copyToClipboardCode
+  },
+  { title: 'useRaf', component: RafStory, code: rafCode }
 ] as MetaData

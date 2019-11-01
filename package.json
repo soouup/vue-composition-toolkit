@@ -17,6 +17,11 @@
   "files": [
     "dist"
   ],
+  "dependencies": {
+    "copy-text-to-clipboard": "^2.1.1",
+    "lodash.debounce": "^4.0.8",
+    "lodash.throttle": "^4.1.1"
+  },
   "devDependencies": {
     "@microsoft/api-extractor": "^7.5.2",
     "@types/jest": "^24.0.19",
@@ -63,9 +68,5 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  },
-  "dependencies": {
-    "lodash.debounce": "^4.0.8",
-    "lodash.throttle": "^4.1.1"
   }
 }
