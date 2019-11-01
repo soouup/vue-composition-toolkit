@@ -4,7 +4,7 @@ import { useCopyToClipboard } from '../index'
 export default {
   setup() {
     const refInputVal = ref('This is the text')
-    const refClipboard = useCopyToClipboard()
+    const [refClipboard, refIsSuccess, refCopied] = useCopyToClipboard()
 
     return () => [
       h('input', {
@@ -21,16 +21,26 @@ export default {
           }
         },
         'Copy to Clipboard'
+      ),
+      h(
+        'p',
+        { style: { color: refIsSuccess.value ? 'green' : 'red' } },
+        refCopied.value
+          ? refIsSuccess.value
+            ? 'Copied'
+            : 'Copy failed'
+          : 'Waiting for copy'
       )
     ]
   }
 }
 
 export const code = `
+\`\`\`js
 export default {
   setup() {
     const refInputVal = ref('This is the text')
-    const refClipboard = useCopyToClipboard()
+    const [refClipboard, refIsSuccess, refCopied] = useCopyToClipboard()
 
     return () => [
       h('input', {
@@ -47,8 +57,18 @@ export default {
           }
         },
         'Copy to Clipboard'
+      ),
+      h(
+        'p',
+        { style: { color: refIsSuccess.value ? 'green' : 'red' } },
+        refCopied.value
+          ? refIsSuccess.value
+            ? 'Copied'
+            : 'Copy failed'
+          : 'Waiting for copy'
       )
     ]
   }
 }
+\`\`\`
 `
