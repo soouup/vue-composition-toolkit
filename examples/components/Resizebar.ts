@@ -1,5 +1,6 @@
 import { h, Ref, createComponent } from '@vue/runtime-dom'
 import { css } from 'emotion'
+import { useCssVar } from '../../src'
 
 export interface ResizebarProps {
   axis: 'x' | 'y'
@@ -12,6 +13,8 @@ export interface ResizebarProps {
 export default createComponent<ResizebarProps>(props => {
   let { axis, rootSelector, bounds } = props
 
+  const refCssVar = useCssVar(rootSelector)
+
   const checkPosition = (e: MouseEvent | TouchEvent) => {
     const touch = e instanceof TouchEvent ? e.touches[0] : e
     const barPosition =
@@ -20,7 +23,7 @@ export default createComponent<ResizebarProps>(props => {
     if (bounds && (bounds.min >= barPosition || bounds.max <= barPosition))
       return false
 
-    document.documentElement.style.setProperty(rootSelector, barPosition + 'px')
+    refCssVar.value = barPosition + 'px'
   }
 
   const dragstart = () => {
