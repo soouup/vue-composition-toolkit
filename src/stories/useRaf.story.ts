@@ -3,13 +3,29 @@ import { useRaf } from '../index'
 
 export default {
   setup() {
-    const refVal = ref(0)
-    const [start, stop, refIsActive] = useRaf(() => {
-      refVal.value++
-    }, true)
+    const refDuration = ref(0)
+    const refIsKeep = ref(true)
+
+    const [start, stop, refIsActive] = useRaf(
+      d => {
+        refDuration.value = d
+      },
+      { keep: refIsKeep }
+    )
 
     return () => [
-      h('h1', refVal.value),
+      h('h1', 'Duration: ' + refDuration.value),
+      h(
+        'input',
+        {
+          type: 'checkbox',
+          checked: refIsKeep.value,
+          onChange(e: Event) {
+            refIsKeep.value = (e.target as HTMLInputElement).checked
+          }
+        },
+        'keep'
+      ),
       h(
         'button',
         {
@@ -27,13 +43,29 @@ export const code = `
 \`\`\`js
 export default {
   setup() {
-    const refVal = ref(0)
-    const [start, stop, refIsActive] = useRaf(() => {
-      refVal.value++
-    }, true)
+    const refDuration = ref(0)
+    const refIsKeep = ref(true)
+
+    const [start, stop, refIsActive] = useRaf(
+      d => {
+        refDuration.value = d
+      },
+      { keep: refIsKeep }
+    )
 
     return () => [
-      h('h1', refVal.value),
+      h('h1', 'Duration: ' + refDuration.value),
+      h(
+        'input',
+        {
+          type: 'checkbox',
+          checked: refIsKeep.value,
+          onChange(e: Event) {
+            refIsKeep.value = (e.target as HTMLInputElement).checked
+          }
+        },
+        'keep'
+      ),
       h(
         'button',
         {

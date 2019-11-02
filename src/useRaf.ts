@@ -1,20 +1,37 @@
-import { ref, onUnmounted, Ref } from '@vue/runtime-dom'
+import { ref, onUnmounted, Ref, isRef, watch } from '@vue/runtime-dom'
+import { getRawValue } from './utils'
 
 type Fn = () => any
 
 export default function useRaf(
-  cb: (tt: number) => any,
-  initialRun?: boolean
+  cb: (duration: number) => any,
+  options: {
+    initialRun?: boolean
+    keep?: Ref<boolean> | boolean
+  } = {}
 ): [Fn, Fn, Ref<boolean>] {
+  const { initialRun, keep } = options
   let id: number
+  let startTime: number = 0
+
+  let isKeep = getRawValue(keep)
+  isRef(keep) &&
+    watch(keep, val => {
+      isKeep = getRawValue(val)
+      startTime = performance.now()
+    })
+
   const refIsActive = ref(false)
-  function step(tt: number) {
+  function step(currentTime: number) {
     refIsActive.value = true
-    cb(tt)
+    cb(currentTime - startTime)
     id = requestAnimationFrame(step)
   }
 
   function start() {
+    if (!startTime || !isKeep) {
+      startTime = performance.now()
+    }
     id = requestAnimationFrame(step)
   }
 
