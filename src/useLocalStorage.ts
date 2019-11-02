@@ -10,10 +10,10 @@ export default function useLocalStorage(
     return raw ? String(val) : isString(val) ? val : JSON.stringify(val)
   }
 
-  const value = ref(defaultValue)
+  const refVal = ref(defaultValue)
 
   if (!isClient) {
-    return [value, () => {}]
+    return [refVal, () => {}]
   }
 
   try {
@@ -22,7 +22,7 @@ export default function useLocalStorage(
     if (typeof localStorageValue !== 'string') {
       localStorage.setItem(key, transformValToSet(defaultValue))
     } else {
-      value.value = raw
+      refVal.value = raw
         ? localStorageValue
         : JSON.parse(localStorageValue) || null
     }
@@ -31,9 +31,9 @@ export default function useLocalStorage(
   const setValue = function(val: any) {
     try {
       localStorage.setItem(key, transformValToSet(val))
-      value.value = val as UnwrapRef<any>
+      refVal.value = val as UnwrapRef<any>
     } catch {}
   }
 
-  return [value, setValue]
+  return [refVal, setValue]
 }
