@@ -4537,6 +4537,11 @@ quick-lru@^1.0.0:
   resolved "https://registry.yarnpkg.com/quick-lru/-/quick-lru-1.1.0.tgz#4360b17c61136ad38078397ff11416e186dcfbb8"
   integrity sha1-Q2CxfGETatOAeDl/8RQW4Ybc+7g=
 
+raf-stub@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/raf-stub/-/raf-stub-3.0.0.tgz#40e53dc3ad3b241311f914bbd41dc11a2c9ee0a9"
+  integrity sha512-64wjDTI8NAkplC3WYF3DUBXmdx8AZF0ubxiicZi83BKW5hcdvMtbwDe6gpFBngTo6+XIJbfwmUP8lMa85UPK6A==
+
 rc@^1.2.7:
   version "1.2.8"
   resolved "https://registry.yarnpkg.com/rc/-/rc-1.2.8.tgz#cd924bf5200a075b83c188cd6b9e211b7fc0d3ed"
