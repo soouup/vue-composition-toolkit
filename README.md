@@ -18,6 +18,7 @@ Vue composition-api toolkit.
 - [x] useWindowSize
 - [x] useCopyToClipboard
 - [x] useRaf
+- [x] useGeolocation
 - [ ] More...Welcome contribution
 
 ## Prior Art
