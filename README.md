@@ -19,6 +19,7 @@ Vue composition-api toolkit.
 - [x] useCopyToClipboard
 - [x] useRaf
 - [x] useGeolocation
+- [x] useMouse
 - [ ] More...Welcome contribution
 
 ## Prior Art
