@@ -75,6 +75,12 @@ $ yarn test fileName
 $ yarn test fileName -t 'test name'
 ```
 
+Debug single test file in vscode:
+
+1. Open a test file
+2. Make breakpoint
+3. Click Start debugging
+
 ## Project Structure
 
 - `src`: Store the source code of the composition api toolkit.
