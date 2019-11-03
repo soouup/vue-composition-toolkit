@@ -12,3 +12,8 @@ export { default as useCopyToClipboard } from './useCopyToClipboard'
 export { default as useRaf } from './useRaf'
 export { default as useGeolocation } from './useGeolocation'
 export { default as useMouse } from './useMouse'
+
+// utils
+import throttle from 'lodash.throttle'
+import debounce from 'lodash.debounce'
+export { throttle, debounce }
