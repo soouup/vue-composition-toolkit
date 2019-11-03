@@ -27,6 +27,9 @@ import CopyToClipboardStory, {
   code as copyToClipboardCode
 } from '../src/stories/useCopyToClipboard.story'
 import RafStory, { code as rafCode } from '../src/stories/useRaf.story'
+import GeolocationStory, {
+  code as geolocationCode
+} from '../src/stories/useGeolocation.story'
 
 interface Meta {
   title: string
@@ -51,5 +54,10 @@ export default [
     component: CopyToClipboardStory,
     code: copyToClipboardCode
   },
-  { title: 'useRaf', component: RafStory, code: rafCode }
+  { title: 'useRaf', component: RafStory, code: rafCode },
+  {
+    title: 'useGeolocation',
+    component: GeolocationStory,
+    code: geolocationCode
+  }
 ] as MetaData
