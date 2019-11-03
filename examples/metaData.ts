@@ -30,6 +30,7 @@ import RafStory, { code as rafCode } from '../src/stories/useRaf.story'
 import GeolocationStory, {
   code as geolocationCode
 } from '../src/stories/useGeolocation.story'
+import MouseStory, { code as mouseCode } from '../src/stories/useMouse.story'
 
 interface Meta {
   title: string
@@ -59,5 +60,6 @@ export default [
     title: 'useGeolocation',
     component: GeolocationStory,
     code: geolocationCode
-  }
+  },
+  { title: 'useMouse', component: MouseStory, code: mouseCode }
 ] as MetaData
