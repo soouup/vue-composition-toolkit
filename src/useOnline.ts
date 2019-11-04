@@ -1,7 +1,10 @@
 import { ref, computed, onUnmounted } from '@vue/runtime-dom'
+import { isClient } from './utils'
 
 export default function useOnline() {
-  const refOnline = ref(false)
+  const refOnline = ref(true)
+
+  if (!isClient) return computed(() => refOnline.value)
 
   refOnline.value = navigator.onLine
 
