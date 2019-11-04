@@ -1,39 +1,41 @@
-import { ref, Ref, UnwrapRef } from '@vue/runtime-dom'
+import { ref, Ref, watch } from '@vue/runtime-dom'
 import { isClient, isString } from './utils'
 
 export default function useLocalStorage(
   key: string,
   defaultValue?: any,
   raw?: boolean
-): [Ref<any>, (value: any) => void] {
-  function transformValToSet(val: any): string {
-    return raw ? String(val) : isString(val) ? val : JSON.stringify(val)
+): Ref<any> {
+  function serializedValue(val: any): string {
+    return raw ? String(val) : JSON.stringify(val)
   }
 
   const refVal = ref(defaultValue)
 
-  if (!isClient) {
-    return [refVal, () => {}]
-  }
+  watch(() => {
+    if (!isClient) {
+      return
+    }
+    try {
+      localStorage.setItem(key, serializedValue(refVal.value))
+    } catch (e) {
+      console.warn(e)
+    }
+  })
 
   try {
     const localStorageValue = localStorage.getItem(key)
     // not exists
-    if (typeof localStorageValue !== 'string') {
-      localStorage.setItem(key, transformValToSet(defaultValue))
+    if (!isString(localStorageValue)) {
+      localStorage.setItem(key, serializedValue(defaultValue))
     } else {
       refVal.value = raw
         ? localStorageValue
-        : JSON.parse(localStorageValue) || null
+        : JSON.parse(localStorageValue || 'null')
     }
-  } catch (e) {}
-
-  const setValue = function(val: any) {
-    try {
-      localStorage.setItem(key, transformValToSet(val))
-      refVal.value = val as UnwrapRef<any>
-    } catch {}
+  } catch (e) {
+    console.warn(e)
   }
 
-  return [refVal, setValue]
+  return refVal
 }
