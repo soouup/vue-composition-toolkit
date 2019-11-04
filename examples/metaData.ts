@@ -31,6 +31,7 @@ import GeolocationStory, {
   code as geolocationCode
 } from '../src/stories/useGeolocation.story'
 import MouseStory, { code as mouseCode } from '../src/stories/useMouse.story'
+import OnlineStory, { code as onlineCode } from '../src/stories/useOnline.story'
 
 interface Meta {
   title: string
@@ -61,5 +62,6 @@ export default [
     component: GeolocationStory,
     code: geolocationCode
   },
-  { title: 'useMouse', component: MouseStory, code: mouseCode }
+  { title: 'useMouse', component: MouseStory, code: mouseCode },
+  { title: 'useOnline', component: OnlineStory, code: onlineCode }
 ] as MetaData
