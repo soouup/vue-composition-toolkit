@@ -22,6 +22,7 @@ const pkg = require(`${pkgDir}/package.json`)
 const args = require('minimist')(process.argv.slice(2))
 const formats = args.formats || args.f
 const devOnly = args.devOnly || args.d
+const target = args._.length ? args._[0] : 'src'
 const prodOnly = !devOnly && (args.prodOnly || args.p)
 
 run()
@@ -44,6 +45,7 @@ async function build() {
       [
         `NODE_ENV:${env}`,
         formats ? `FORMATS:${formats}` : ``,
+        `TARGET:${target}`,
         args.types ? `TYPES:true` : ``,
         prodOnly ? `PROD_ONLY:true` : ``
       ]

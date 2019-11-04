@@ -23,23 +23,25 @@ let hasTSChecked = false
 const configs = {
   esm: {
     file: resolve(
-      `${target === 'src' ? '' : target}dist/${pkg.name}.esm-bundler.js`
+      `${target === 'src' ? '' : target + '/'}dist/${pkg.name}.esm-bundler.js`
     ),
     format: `es`
   },
   cjs: {
-    file: resolve(`${target === 'src' ? '' : target}/dist/${pkg.name}.cjs.js`),
+    file: resolve(
+      `${target === 'src' ? '' : target + '/'}dist/${pkg.name}.cjs.js`
+    ),
     format: `cjs`
   },
   global: {
     file: resolve(
-      `${target === 'src' ? '' : target}/dist/${pkg.name}.global.js`
+      `${target === 'src' ? '' : target + '/'}dist/${pkg.name}.global.js`
     ),
     format: `iife`
   },
   'esm-browser': {
     file: resolve(
-      `${target === 'src' ? '' : target}/dist/${pkg.name}.esm-browser.js`
+      `${target === 'src' ? '' : target + '/'}dist/${pkg.name}.esm-browser.js`
     ),
     format: `es`
   }
