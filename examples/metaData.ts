@@ -32,6 +32,9 @@ import GeolocationStory, {
 } from '../src/stories/useGeolocation.story'
 import MouseStory, { code as mouseCode } from '../src/stories/useMouse.story'
 import OnlineStory, { code as onlineCode } from '../src/stories/useOnline.story'
+import VisibilityStateStory, {
+  code as visibilityStateCode
+} from '../src/stories/useVisibilityState.story'
 
 interface Meta {
   title: string
@@ -63,5 +66,10 @@ export default [
     code: geolocationCode
   },
   { title: 'useMouse', component: MouseStory, code: mouseCode },
-  { title: 'useOnline', component: OnlineStory, code: onlineCode }
+  { title: 'useOnline', component: OnlineStory, code: onlineCode },
+  {
+    title: 'useVisibilityState',
+    component: VisibilityStateStory,
+    code: visibilityStateCode
+  }
 ] as MetaData
