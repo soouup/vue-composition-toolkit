@@ -20,6 +20,7 @@ Vue composition-api toolkit.
 - [x] useRaf
 - [x] useGeolocation
 - [x] useMouse
+- [x] useOnline
 - [ ] More...Welcome contribution
 
 ## Prior Art
