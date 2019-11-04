@@ -6,21 +6,22 @@ Vue composition-api toolkit.
 
 ## Progress Tracking
 
-- [x] useBoolean
-- [x] useCounter
 - [x] useCssVar
-- [x] useInterval
-- [x] useRendered
-- [x] useScroll
-- [x] useScrolling
-- [x] useTimeout
-- [x] useToggle
 - [x] useWindowSize
 - [x] useCopyToClipboard
 - [x] useRaf
 - [x] useGeolocation
 - [x] useMouse
 - [x] useOnline
+- [x] useVisibilityState
+- [x] useTimeout
+- [x] useInterval
+- [x] useRendered
+- [x] useScroll
+- [x] useScrolling
+- [x] useCounter
+- [x] useToggle
+- [x] useBoolean
 - [ ] More...Welcome contribution
 
 ## Prior Art
