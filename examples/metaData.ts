@@ -35,6 +35,9 @@ import OnlineStory, { code as onlineCode } from '../src/stories/useOnline.story'
 import VisibilityStateStory, {
   code as visibilityStateCode
 } from '../src/stories/useVisibilityState.story'
+import LocalStorageStory, {
+  code as localStorageCode
+} from '../src/stories/useLocalStorage.story'
 import WindowFocusStory, {
   code as windowFocusCode
 } from '../src/stories/useWindowFocus.story'
@@ -75,6 +78,11 @@ export default [
     title: 'useVisibilityState',
     component: VisibilityStateStory,
     code: visibilityStateCode
+  },
+  {
+    title: 'useLocalStorage',
+    component: LocalStorageStory,
+    code: localStorageCode
   },
   {
     title: 'useWindowFocus',
