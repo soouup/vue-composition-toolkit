@@ -35,6 +35,9 @@ import OnlineStory, { code as onlineCode } from '../src/stories/useOnline.story'
 import VisibilityStateStory, {
   code as visibilityStateCode
 } from '../src/stories/useVisibilityState.story'
+import LocalStorageStory, {
+  code as localStorageCode
+} from '../src/stories/useLocalStorage.story'
 
 interface Meta {
   title: string
@@ -71,5 +74,10 @@ export default [
     title: 'useVisibilityState',
     component: VisibilityStateStory,
     code: visibilityStateCode
+  },
+  {
+    title: 'useLocalStorage',
+    component: LocalStorageStory,
+    code: localStorageCode
   }
 ] as MetaData
