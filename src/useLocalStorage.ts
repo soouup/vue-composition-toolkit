@@ -1,16 +1,16 @@
 import { ref, Ref, watch } from '@vue/runtime-dom'
 import { isClient, isString } from './utils'
 
-export default function useLocalStorage(
+export default function useLocalStorage<Data = any>(
   key: string,
-  defaultValue?: any,
+  defaultValue?: Data,
   raw?: boolean
-): Ref<any> {
+): Ref<Data | undefined> {
   function serializedValue(val: any): string {
     return raw ? String(val) : JSON.stringify(val)
   }
 
-  const refVal = ref(defaultValue)
+  const refVal = ref<Data | undefined>(defaultValue)
 
   try {
     const localStorageValue = localStorage.getItem(key)

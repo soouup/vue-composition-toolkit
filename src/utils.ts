@@ -19,3 +19,4 @@ export const isClient = typeof window !== 'undefined'
 export const getRawValue = <V>(val?: V): V extends Ref<infer M> ? M : V => {
   return isRef(val) ? val.value : val
 }
+export const now = () => Date.now()
