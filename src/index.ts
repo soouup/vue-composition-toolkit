@@ -14,6 +14,7 @@ export { default as useGeolocation } from './useGeolocation'
 export { default as useMouse } from './useMouse'
 export { default as useOnline } from './useOnline'
 export { default as useVisibilityState } from './useVisibilityState'
+export { default as useLocalStorage } from './useLocalStorage'
 
 // utils
 import throttle from 'lodash.throttle'
