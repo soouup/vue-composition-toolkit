@@ -7,7 +7,9 @@ Vue composition-api toolkit.
 ## Progress Tracking
 
 - [x] useCssVar
+- [x] useSWR
 - [x] useWindowSize
+- [x] useWindowFocus
 - [x] useCopyToClipboard
 - [x] useRaf
 - [x] useGeolocation
@@ -19,6 +21,7 @@ Vue composition-api toolkit.
 - [x] useRendered
 - [x] useScroll
 - [x] useScrolling
+- [x] useLocalStorage
 - [x] useCounter
 - [x] useToggle
 - [x] useBoolean
