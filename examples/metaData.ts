@@ -38,6 +38,9 @@ import VisibilityStateStory, {
 import LocalStorageStory, {
   code as localStorageCode
 } from '../src/stories/useLocalStorage.story'
+import SessionStorageStory, {
+  code as sessionStorageCode
+} from '../src/stories/useSessionStorage.story'
 
 interface Meta {
   title: string
@@ -79,5 +82,10 @@ export default [
     title: 'useLocalStorage',
     component: LocalStorageStory,
     code: localStorageCode
+  },
+  {
+    title: 'useSessionStorage',
+    component: SessionStorageStory,
+    code: sessionStorageCode
   }
 ] as MetaData
