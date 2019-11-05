@@ -4,22 +4,22 @@ import { isString } from '../utils'
 
 export default {
   setup() {
-    const refLocalStr = useSessionStorage('test-key', 'origin value')
+    const refSessionTestKey = useSessionStorage('test-key', 'origin value')
 
     return () =>
       h('div', [
         h(
           'p',
-          isString(refLocalStr.value)
-            ? refLocalStr.value
-            : JSON.stringify(refLocalStr.value)
+          isString(refSessionTestKey.value)
+            ? refSessionTestKey.value
+            : JSON.stringify(refSessionTestKey.value)
         ),
         h('div', [
           h(
             'button',
             {
               onClick() {
-                refLocalStr.value = 'foo'
+                refSessionTestKey.value = 'foo'
               }
             },
             'set a string value'
@@ -28,7 +28,7 @@ export default {
             'button',
             {
               onClick() {
-                refLocalStr.value = {
+                refSessionTestKey.value = {
                   foo: 'bar'
                 }
               }
@@ -44,19 +44,19 @@ export const code = `
 \`\`\`js
 export default {
   setup() {
-    const refLocalStr = useSessionStorage('test-key', 'origin value')
+    const refSessionTestKey = useSessionStorage('test-key', 'origin value')
 
     return () => h('div', [
-      h('p', isString(refLocalStr.value) ? refLocalStr.value : JSON.stringify(refLocalStr.value)),
+      h('p', isString(refSessionTestKey.value) ? refSessionTestKey.value : JSON.stringify(refSessionTestKey.value)),
       h('div', [
         h('button', {
           onClick() {
-            refLocalStr.value = 'foo'
+            refSessionTestKey.value = 'foo'
           }
         }, 'set a string value'),
         h('button', {
           onClick() {
-            refLocalStr.value = {
+            refSessionTestKey.value = {
               foo: 'bar'
             }
           }
