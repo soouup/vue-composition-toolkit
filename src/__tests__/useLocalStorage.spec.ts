@@ -57,11 +57,10 @@ describe('useLocalStorage', () => {
   })
 
   test('set localStorage', async () => {
-    let refToChange: Ref
+    let refValue: Ref
     const App = {
       setup() {
-        const refValue = useLocalStorage('test-key', 'defaultValue')
-        refToChange = refValue
+        refValue = useLocalStorage('test-key', 'defaultValue')
         return () => h('div', refValue.value)
       }
     }
@@ -71,18 +70,17 @@ describe('useLocalStorage', () => {
     expect(localStorage.getItem('test-key')).toBe('"defaultValue"')
     expect(serializeInner(root)).toBe('<div>defaultValue</div>')
 
-    refToChange!.value = 'set value successed'
+    refValue!.value = 'set value successed'
     await nextTick()
     expect(localStorage.getItem('test-key')).toBe('"set value successed"')
     expect(serializeInner(root)).toBe('<div>set value successed</div>')
   })
 
   test('set localStorage with a object value', async () => {
-    let refToChange: Ref
+    let refValue: Ref
     const App = {
       setup() {
-        const refValue = useLocalStorage('test-key', 'defaultValue')
-        refToChange = refValue
+        refValue = useLocalStorage('test-key', 'defaultValue')
         return () => h('div', JSON.stringify(refValue.value))
       }
     }
@@ -90,7 +88,7 @@ describe('useLocalStorage', () => {
     const root = nodeOps.createElement('div')
     render(h(App), root)
 
-    refToChange!.value = {
+    refValue!.value = {
       a: 2
     }
     await nextTick()
@@ -99,11 +97,10 @@ describe('useLocalStorage', () => {
   })
 
   test('set localStorage with a object value by raw', async () => {
-    let refToChange: Ref
+    let refValue: Ref
     const App = {
       setup() {
-        const refValue = useLocalStorage('test-key', 'defaultValue', true)
-        refToChange = refValue
+        refValue = useLocalStorage('test-key', 'defaultValue', true)
         return () => h('div', JSON.stringify(refValue.value))
       }
     }
@@ -111,7 +108,7 @@ describe('useLocalStorage', () => {
     const root = nodeOps.createElement('div')
     render(h(App), root)
 
-    refToChange!.value = { a: 2 }
+    refValue!.value = { a: 2 }
     await nextTick()
     expect(localStorage.getItem('test-key')).toBe(String({ a: 2 }))
     expect(serializeInner(root)).toBe('<div>{"a":2}</div>')

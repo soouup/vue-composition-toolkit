@@ -12,17 +12,6 @@ export default function useLocalStorage(
 
   const refVal = ref(defaultValue)
 
-  watch(() => {
-    if (!isClient) {
-      return
-    }
-    try {
-      localStorage.setItem(key, serializedValue(refVal.value))
-    } catch (e) {
-      console.warn(e)
-    }
-  })
-
   try {
     const localStorageValue = localStorage.getItem(key)
     // not exists
@@ -36,6 +25,20 @@ export default function useLocalStorage(
   } catch (e) {
     console.warn(e)
   }
+
+  watch(
+    () => {
+      if (!isClient) {
+        return
+      }
+      try {
+        localStorage.setItem(key, serializedValue(refVal.value))
+      } catch (e) {
+        console.warn(e)
+      }
+    },
+    { flush: 'sync' }
+  )
 
   return refVal
 }
