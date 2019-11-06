@@ -49,6 +49,7 @@
     "rollup-plugin-typescript2": "^0.24.3",
     "ts-jest": "^24.1.0",
     "typescript": "^3.6.4",
+    "unfetch": "^4.1.0",
     "zlib": "^1.0.5"
   },
   "lint-staged": {

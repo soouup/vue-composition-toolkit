@@ -41,6 +41,10 @@ import LocalStorageStory, {
 import SessionStorageStory, {
   code as sessionStorageCode
 } from '../src/stories/useSessionStorage.story'
+import WindowFocusStory, {
+  code as windowFocusCode
+} from '../src/stories/useWindowFocus.story'
+import SWRStory, { code as SWRCode } from '../src/stories/useSWR.story'
 
 interface Meta {
   title: string
@@ -87,5 +91,11 @@ export default [
     title: 'useSessionStorage',
     component: SessionStorageStory,
     code: sessionStorageCode
-  }
+  },
+  {
+    title: 'useWindowFocus',
+    component: WindowFocusStory,
+    code: windowFocusCode
+  },
+  { title: 'useSWR', component: SWRStory, code: SWRCode }
 ] as MetaData

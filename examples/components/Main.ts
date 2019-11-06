@@ -40,7 +40,16 @@ export default createComponent(() => {
         `
       },
       [
-        h(store.currentMetaData.component as ComponentOptions),
+        h(
+          'section',
+          {
+            class: css`
+              height: calc(${window.innerHeight}px - var(--doc-height) - 30px);
+              overflow: auto;
+            `
+          },
+          h(store.currentMetaData.component as ComponentOptions)
+        ),
         h(
           'section',
           {
