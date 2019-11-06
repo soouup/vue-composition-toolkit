@@ -11,9 +11,13 @@ const reason = {
     '【network】Requests fall outside of the `stale-while-revalidate` window, getting the response from the network.'
 }
 
+interface Person {
+  login: string
+}
+
 export default {
   setup() {
-    const [fetcher, { refData, refError, refReason }] = useSWR(
+    const [fetcher, { refData, refError, refReason }] = useSWR<Person[]>(
       'contributors',
       async () => {
         const res = await fetch(
@@ -43,7 +47,14 @@ export default {
         refError.value
           ? h('h1', 'Error')
           : refData.value
-          ? h('pre', JSON.stringify(refData.value, null, 2))
+          ? [
+              h('h1', 'Contributors:'),
+              h(
+                'ul',
+                { style: { color: 'green' } },
+                refData.value.map(o => h('li', o.login))
+              )
+            ]
           : h('h1', 'Loading')
       ])
   }
