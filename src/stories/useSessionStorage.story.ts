@@ -4,7 +4,7 @@ import { isString } from '../utils'
 
 export default {
   setup() {
-    const refSessionTestKey = useSessionStorage('test-key', 'origin value')
+    const refSessionTestKey = useSessionStorage<any>('test-key', 'origin value')
 
     return () =>
       h('div', [
@@ -44,25 +44,39 @@ export const code = `
 \`\`\`js
 export default {
   setup() {
-    const refSessionTestKey = useSessionStorage('test-key', 'origin value')
+    const refSessionTestKey = useSessionStorage<any>('test-key', 'origin value')
 
-    return () => h('div', [
-      h('p', isString(refSessionTestKey.value) ? refSessionTestKey.value : JSON.stringify(refSessionTestKey.value)),
+    return () =>
       h('div', [
-        h('button', {
-          onClick() {
-            refSessionTestKey.value = 'foo'
-          }
-        }, 'set a string value'),
-        h('button', {
-          onClick() {
-            refSessionTestKey.value = {
-              foo: 'bar'
-            }
-          }
-        }, 'set a object value')
+        h(
+          'p',
+          isString(refSessionTestKey.value)
+            ? refSessionTestKey.value
+            : JSON.stringify(refSessionTestKey.value)
+        ),
+        h('div', [
+          h(
+            'button',
+            {
+              onClick() {
+                refSessionTestKey.value = 'foo'
+              }
+            },
+            'set a string value'
+          ),
+          h(
+            'button',
+            {
+              onClick() {
+                refSessionTestKey.value = {
+                  foo: 'bar'
+                }
+              }
+            },
+            'set a object value'
+          )
+        ])
       ])
-    ])
   }
 }
 \`\`\`
